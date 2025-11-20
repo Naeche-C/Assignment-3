@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Workouts</title>
+  </head>
+  <body>
+    <h1>All Workouts</h1>
+    <ul>
+  <% workouts.forEach(workout => { %>
+    <li>
+      <%= workout.name %> - <%= workout.date %> - <%= workout.duration %> minutes
+      <a href="/workouts/edit/<%= workout._id %>">Edit</a>
+
+      <form action="/workouts/delete/<%= workout._id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this workout?');" style="display:inline;">
+  <button type="submit">Delete</button>
+</form>
+
+    </li>
+  <% }) %>
+</ul>
+
+    <a href="/workouts/add">Add a New Workout</a>
+  </body>
+</html>
