@@ -1,0 +1,26 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs
+*.log
+
+# Dependency directories
+bower_components/
+
+# System files (macOS, Linux, etc.)
+.DS_Store
+Thumbs.db
+
+# IDE or editor folders
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Optional: If you're using npm or yarn lock files, ignore them if you don't want them in the repo
+# package-lock.json
+# yarn.lock
