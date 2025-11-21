@@ -1,7 +1,6 @@
 Workout Tracker Web Application
 
-Author: Chukwuemeka Chinaechelum
-Year: 2025
+Student: Chukwuemeka Chinaechelum
 
  About the Project
 The Workout Tracker is a CRUD web application that allows users to log, view, edit, and delete workout sessions.
