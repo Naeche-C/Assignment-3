@@ -1,11 +1,24 @@
-<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracker</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    
+    <%- include('partials/header') %>
 
-<h1>Welcome to the Workout Tracker!</h1>
-<p>Manage your workouts and track your progress.</p>
+    <main>
+        <h1>Welcome to the Workout Tracker!</h1>
+        <p>Manage your workouts and track your progress.</p>
 
-<a href="/workouts" class="btn">View Workouts</a>
-<a href="/workouts/add" class="btn">Add a New Workout</a>
+        <a href="/workouts" class="btn">View Workouts</a>
+        <a href="/workouts/add" class="btn">Add a New Workout</a>
+    </main>
 
-<%- include('partials/footer') %>
+    <%- include('partials/footer') %>
 
-
+</body>
+</html>

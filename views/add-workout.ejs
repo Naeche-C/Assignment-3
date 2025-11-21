@@ -2,22 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Workout</title>
+  <title>Add a New Workout</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <h1>Add a New Workout</h1>
-  <form action="/workouts" method="POST">
-    <label for="name">Workout Name:</label>
-    <input type="text" name="name" required>
 
-    <label for="date">Date:</label>
-    <input type="date" name="date" required>
+<header>
+  <nav>
+    <a href="/">Home</a> |
+    <a href="/workouts">View Workouts</a>
+  </nav>
+</header>
 
-    <label for="duration">Duration (in minutes):</label>
-    <input type="number" name="duration" required>
+<h1>Add a New Workout</h1>
 
-    <button type="submit">Add Workout</button>
+<form action="/workouts" method="POST">
+  <label>Workout Name:</label>
+  <input type="text" name="name" required>
+
+  <label>Date:</label>
+  <input type="date" name="date" required>
+
+  <label>Duration (in minutes):</label>
+  <input type="number" name="duration" required>
+
+  <button type="submit">Add Workout</button>
 </form>
 
 </body>

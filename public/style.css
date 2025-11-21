@@ -1,46 +1,200 @@
-/* public/styles.css */
+/* ---- Global Styles ---- */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #111;
+    color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #ff214f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ---- Navigation ---- */
+nav {
+    background-color: #000;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 3px solid #ff214f;
+}
+
+nav a {
+    margin: 0 20px;
+    font-size: 1.1rem;
+}
+
+/* ---- Page Layout ---- */
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 50px auto;
+    text-align: center;
 }
 
 h1 {
-  color: #2c3e50;
+    color: #ff214f;
+    text-transform: uppercase;
+    margin-bottom: 20px;
 }
 
-form {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-  margin: 0 auto;
+/* ---- Form Styling ---- */
+.form-box {
+    display: flex;
+    flex-direction: column;
+    background: #1a1a1a;
+    padding: 25px;
+    border-radius: 8px;
+    border: 2px solid #ff214f;
+    gap: 12px;
 }
 
-form input,
-form button {
-  margin: 10px 0;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
+input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
 }
 
-button {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  cursor: pointer;
+/* ---- Buttons ---- */
+.btn-save, .btn-add {
+    background: #ff214f;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 180px;
+    margin: 10px auto;
 }
 
-button:hover {
-  background-color: #2980b9;
+.btn-save:hover,
+.btn-add:hover {
+    background: #d4183e;
 }
 
+.btn-delete {
+    background: #cc0000;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background: #a30000;
+}
+
+.btn-back {
+    display: inline-block;
+    margin-top: 18px;
+    color: #ff214f;
+}
+
+/* ---- Workout List ---- */
 ul {
-  list-style-type: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
-ul li {
-  margin: 10px 0;
+li {
+    margin: 18px 0;
+    background: #1b1b1b;
+    padding: 12px;
+    border: 1px solid #333;
+    border-left: 5px solid #ff214f;
+    border-radius: 6px;
+}
+
+h1, h2, h3, p, span, li, a {
+  color: #ffffff;
+}
+
+/* Make nav links visible */
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 20px;
+}
+.navbar a:hover {
+  color: #ff0066;
+}
+
+/* Page Title */
+.page-title {
+  color: #ff0066;
+  font-size: 42px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Fix workout text visibility */
+.all-workouts-list li {
+  color: #ffffff;   /* white text */
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* Style the workout text container */
+.workout-item {
+  background: #ffffff;
+  color: #222222;   /* visible text inside box */
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* Fix Edit link visibility */
+a.edit-link {
+  color: #0077ff;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+a.edit-link:hover {
+  text-decoration: underline;
+}
+
+/* Fix invisible workout text */
+li {
+    color: #ffffff;
+}
+
+/* Fix Edit link visibility */
+a {
+    color: #4da6ff;
+}
+
+/* Button text visible always */
+button {
+    color: #ffffff;
+}
+
+.workout-title {
+    font-size: 1.1rem;
+    color: #111; /* Dark text so it's visible on white background */
+    font-weight: 500;
+}
+
+.workout-item {
+    padding: 0.7rem 1.2rem;
+    color: #111; /* Universal fallback */
+}
+
+/* Make workout text inside each card visible */
+.workout-item span,
+.workout-item div,
+.workout-item p,
+.workout-title {
+    color: #111 !important;
+    font-weight: 600;
 }
