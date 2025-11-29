@@ -1,74 +1,93 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
-const methodOverride = require('method-override');
-const Workout = require(path.join(__dirname, 'models', 'Workout'));
+// ----------------------
+// Required Packages
+// ----------------------
+require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+const path = require("path");
+const methodOverride = require("method-override");
+const session = require("express-session");
+const passport = require("passport");
+const flash = require("connect-flash");
 
+// Passport config
+require("./config/passport")(passport);
+
+// Initialize Express
 const app = express();
 const port = 3000;
 
-// Middleware
-app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride('_method'));
+// ----------------------
+// View Engine
+// ----------------------
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
+// ----------------------
+// Middleware
+// ----------------------
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
+
+// ----------------------
+// Session + Passport Setup
+// ----------------------
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "supersecret",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+// Make authenticated user available to views
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+});
+
+// ----------------------
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI, {
+// ----------------------
+mongoose
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB connected'))
-.catch((err) => console.log('MongoDB Error:', err));
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log("MongoDB Error:", err));
+
+// ----------------------
+// Routes
+// ----------------------
 
 // Home Page
-app.get('/', (req, res) => {
-    res.render('home');
+app.get("/", (req, res) => {
+  res.render("home");
 });
 
-// Show Edit Workout Page
-app.get('/workouts/:id/edit', async (req, res) => {
-  const workout = await Workout.findById(req.params.id);
-  if (!workout) return res.status(404).send("Workout not found");
-  res.render('edit-workout', { workout });
+// Authentication routes (Google + GitHub)
+app.use("/auth", require("./routes/auth"));
+
+// Workout routes (ALL workout CRUD is inside routes/workout.js)
+app.use("/workouts", require("./routes/workout"));
+
+// Debug route to check login status (optional)
+app.get("/debug", (req, res) => {
+  res.send({
+    loggedIn: req.isAuthenticated(),
+    user: req.user,
+  });
 });
 
-
-// View all workouts
-app.get('/workouts', async (req, res) => {
-    const workouts = await Workout.find();
-    res.render('workouts', { workouts });
-});
-
-// Show form - Add Workout
-app.get('/workouts/add', (req, res) => {
-    res.render('add-workout');
-});
-
-// Create Workout
-app.post('/workouts', async (req, res) => {
-    await Workout.create(req.body);
-    res.redirect('/workouts');
-});
-
-// Show form - Edit Workout
-app.get('/workouts/:id/edit', async (req, res) => {
-    const workout = await Workout.findById(req.params.id);
-    res.render('edit-workout', { workout });
-});
-
-// Update Workout
-app.put('/workouts/:id', async (req, res) => {
-    await Workout.findByIdAndUpdate(req.params.id, req.body);
-    res.redirect('/workouts');
-});
-
-// Delete Workout
-app.delete('/workouts/:id', async (req, res) => {
-    await Workout.findByIdAndDelete(req.params.id);
-    res.redirect('/workouts');
-});
-
+// ----------------------
 // Server Start
-app.listen(port, () => console.log(`Server running at http://localhost:${port}`));
+// ----------------------
+app.listen(port, () =>
+  console.log(`Server running at http://localhost:${port}`)
+);

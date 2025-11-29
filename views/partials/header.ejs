@@ -1,18 +1,17 @@
-<!-- views/partials/header.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workout Tracker</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/workouts">View Workouts</a>
-            <a href="/workouts/add">Add Workout</a>
-        </nav>
-    </header>
+<header class="navbar">
+    <nav>
+        <a href="/" class="nav-link">Home</a>
+        <a href="/workouts" class="nav-link">View Workouts</a>
+        <a href="/workouts/add" class="nav-link">Add Workout</a>
 
+        <div style="float: right;">
+            <% if (user) { %>
+                <span class="nav-user">Hi, <%= user.name %></span>
+                <a href="/auth/logout" class="nav-link logout-btn">Logout</a>
+            <% } else { %>
+                <a href="/auth/google" class="nav-link login-btn">Login with Google</a>
+                <a href="/auth/github" class="nav-link login-btn">Login with GitHub</a>
+            <% } %>
+        </div>
+    </nav>
+</header>

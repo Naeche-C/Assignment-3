@@ -4,18 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workout Tracker</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        .home-container {
+            max-width: 800px;
+            margin: 80px auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .home-title {
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .home-text {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 30px;
+        }
+
+        .btn-container {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .home-btn {
+            padding: 12px 22px;
+            background: #0058ff;
+            border-radius: 6px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .home-btn:hover {
+            background: #003cb3;
+        }
+    </style>
 </head>
+
 <body>
-    
+
     <%- include('partials/header') %>
 
-    <main>
-        <h1>Welcome to the Workout Tracker!</h1>
-        <p>Manage your workouts and track your progress.</p>
+    <main class="home-container">
+        <h1 class="home-title">Welcome to the Workout Tracker!</h1>
 
-        <a href="/workouts" class="btn">View Workouts</a>
-        <a href="/workouts/add" class="btn">Add a New Workout</a>
+        <p class="home-text">
+            Track your workouts, stay consistent, and reach your fitness goals.
+        </p>
+
+        <div class="btn-container">
+            <a href="/workouts" class="home-btn">View Workouts</a>
+            <a href="/workouts/add" class="home-btn">Add Workout</a>
+        </div>
     </main>
 
     <%- include('partials/footer') %>
